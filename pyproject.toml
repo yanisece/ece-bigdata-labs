@@ -1,16 +1,19 @@
 [project]
 name = "ece-bigdata-labs"
 version = "0.1.0"
-description = "Add your description here"
+description = "Dataset generators for the ECE Big Data Framework labs"
 readme = "README.md"
 authors = [
     { name = "y-kedjem-ece", email = "yanis.kedjem@edu.ece.fr" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "faker>=40.41.0",
+]
 
 [project.scripts]
-ece-bigdata-labs = "ece_bigdata_labs:main"
+dataset-users = "ece_bigdata_labs.dataset_users:main"
+dataset-orders = "ece_bigdata_labs.dataset_orders:main"
 
 [build-system]
 requires = ["uv_build>=0.12.10,<0.13.0"]
