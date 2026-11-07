@@ -9,3 +9,12 @@ __pycache__/
 target/
 logs/
 dbt_packages/
+
+duckdb-results.txt
+s3-debug.log
+*.duckdb
+*.parquet
+*-large.csv
+target/
+dbt_packages/
+logs/
