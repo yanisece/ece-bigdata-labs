@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_users
+    description: Cleaned and typed users from the Bronze layer.
+    columns:
+      - name: user_id
+        tests: [unique, not_null]
+      - name: email
+        tests: [unique, not_null]
+      - name: sex
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['F', 'M']
+      - name: state
+        tests: [not_null]
+
+  - name: stg_orders
+    description: Cleaned, typed and deduplicated orders from the Bronze layer.
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: user_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_users')
+                field: user_id
+      - name: quantity
+        tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5]
+                quote: false
+      - name: product
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['bread', 'brioche', 'cookie', 'croissant', 'donut', 'drink']
